@@ -1,11 +1,22 @@
 <html>
   <head>
     <title>サッカー試合検索</title>
+		<link rel="stylesheet" href="/style.css">
+		<link rel="stylesheet" href="/bootflat.github.io-master/css/site.min.css">
   </head>
   <body>
-    <h1>本日の試合</h1>
-    <ul>
-      <%=games%>
-    </ul>
+    <h1>試合予定</h1>
+		<div class="col-md-12">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">試合予定</div>
+
+              <ul class="list-group">
+								<%=games%>
+              </ul>
+            </div>
+          </div>
+
+
   </body>
 </html>
