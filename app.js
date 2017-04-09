@@ -8,7 +8,8 @@ const path = require('path');
 const API_GIFMAGAZINE_DOMAIN = 'http://api.gifmagazine.net';
 const API_GIFMAGAZINE_PATH = '/v1/gifs/search';
 
-const API_URL = 'https://api.sportradar.us/soccer-t3/eu/en/schedules/2017-04-01/schedule.json?api_key=n387hsw9p7r8v59pkc85vkmy';
+const API_DOMAIN = 'https://api.sportradar.us/soccer-t3/eu/en/schedules/';
+const API_PATH = '/schedule.json?api_key=n387hsw9p7r8v59pkc85vkmy';
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template', 'main.tmpl'));
 const compiled = _.template(TEMPLATE);
 
@@ -20,7 +21,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   const q = qs.stringify(req.query);
-  const url = API_URL;
+  var now = new Date();
+
+  var y = now.getFullYear();
+  var m = now.getMonth()+1;
+  var d = now.getDate();
+
+  if (m < 10) {
+    m = '0' + m;
+  }
+  if (d < 10) {
+    d = '0' + d;
+  }
+
+  var formattedDate = y + '-' + m + '-' + d;
+
+
+
+  console.log(formattedDate);
+  const url = API_DOMAIN + formattedDate + API_PATH;
 /*
 axios.get(url).then((results) => {
 	const data = results.sport_events;
